@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="Макет сторінки соціального педагога для навчального проєкту реклами. Дані нікуди не надсилаються.">
+<title>Двері школи відчинені</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Literata:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+/* Layout: one calm column. Teal hero with the lit door, then plain paper sections: help, steps, questions, contact form. */
+:root{
+  --bg:#F6F5F1; --card:#FFFFFF; --fg:#12343B; --muted:#4A666C; --line:#D8DDD7;
+  --wall:#17454F; --wall-deep:#0E3038; --on-wall:#EAF4F4; --amber:#F2B84B; --amber-ink:#6B4700; --focus:#0B6F85;
+  --serif:'Literata',Georgia,'Times New Roman',serif; --sans:'Source Sans 3','Segoe UI',Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0C2A31; --card:#12363E; --fg:#EAF1F1; --muted:#A8C1C5; --line:#2B4F57; --amber-ink:#F2B84B; --focus:#7FD3E6; color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0C2A31; --card:#12363E; --fg:#EAF1F1; --muted:#A8C1C5; --line:#2B4F57; --amber-ink:#F2B84B; --focus:#7FD3E6; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:18px;line-height:1.55}
+.wrap{max-width:720px;margin-inline:auto;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}
+h1,h2{font-family:var(--serif);line-height:1.15;text-wrap:balance;margin:0}
+h2{font-size:1.65rem;margin-bottom:.9rem}
+p{margin:0 0 .9rem}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.demo{background:#FFF1CC;color:#4A3500;font-size:.92rem;padding:.55rem 0}
+.demo .wrap{display:flex;gap:.6rem;align-items:baseline}
+.demo b{font-weight:600}
+.hero{background:var(--wall);color:var(--on-wall)}
+.hero .wrap{padding-block:2rem 0}
+.school{font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:#9CC2C8;margin-bottom:.8rem}
+.hero h1{font-size:clamp(2.3rem,9vw,3.6rem);color:#fff}
+.hero h1 em{font-style:normal;color:var(--amber)}
+.hero p.lead{font-size:1.2rem;margin:1rem 0 1.4rem;max-width:30ch}
+.btns{display:flex;flex-wrap:wrap;gap:.7rem}
+.btn{font:inherit;font-weight:600;border:2px solid var(--amber);background:var(--amber);color:#2A1D00;padding:.75rem 1.2rem;cursor:pointer;text-decoration:none;display:inline-block;min-height:48px}
+.btn.ghost{background:transparent;color:#fff;border-color:#8FB5BB}
+.btn:hover{filter:brightness(1.06)}
+.scene{display:block;width:100%;max-width:520px;margin:1.2rem auto 0}
+section{padding-block:2.4rem}
+.help{display:grid;gap:.9rem}
+.help article{background:var(--card);border:1px solid var(--line);padding:1.1rem 1.2rem}
+.help h3{font-size:1.1rem;margin:0 0 .3rem;font-family:var(--sans);font-weight:600}
+.help p{margin:0;color:var(--muted)}
+.help .dot{display:inline-block;width:.7rem;height:.7rem;background:var(--amber);margin-right:.55rem}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:.9rem;counter-reset:s}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:2.4rem 1fr;gap:.8rem;align-items:start}
+ol.steps li::before{content:counter(s);font-family:var(--serif);font-weight:700;font-size:1.3rem;width:2.4rem;height:2.4rem;display:grid;place-items:center;background:var(--wall);color:#fff}
+ol.steps b{display:block}
+details{border-top:1px solid var(--line)}
+details:last-of-type{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:600;padding:1rem 0;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--amber-ink)}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);padding-bottom:1rem;margin:0}
+.note{font-size:.9rem;color:var(--muted);margin-top:.9rem}
+.formcard{background:var(--card);border:1px solid var(--line);padding:1.3rem}
+fieldset{border:0;padding:0;margin:0 0 1.1rem}
+legend,label.l{font-weight:600;display:block;margin-bottom:.4rem;padding:0}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{border:2px solid var(--line);padding:.5rem .85rem;cursor:pointer;min-height:44px;display:inline-flex;align-items:center;background:var(--bg)}
+.chips input:checked+label{border-color:var(--wall);background:var(--wall);color:#fff}
+.chips input:focus-visible+label{outline:3px solid var(--focus);outline-offset:2px}
+input[type=text],textarea{width:100%;font:inherit;color:var(--fg);background:var(--bg);border:2px solid var(--line);padding:.7rem .8rem;min-height:48px}
+textarea{min-height:110px;resize:vertical}
+.hint{font-size:.9rem;color:var(--muted);margin:.3rem 0 0}
+.err{color:#B3261E;font-size:.92rem;margin:.3rem 0 0}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .err{color:#FF9E94}}
+:root[data-theme="dark"] .err{color:#FF9E94}
+.consent{display:flex;gap:.7rem;align-items:flex-start;margin-bottom:1.1rem}
+.consent input{width:24px;height:24px;margin-top:.15rem;flex:none}
+.done{background:var(--card);border:2px solid var(--wall);padding:1.3rem}
+.done h3{font-family:var(--serif);margin:0 0 .5rem;font-size:1.3rem}
+.direct{display:flex;flex-wrap:wrap;gap:.7rem;align-items:center;margin-top:1.2rem}
+.num{font-weight:600;font-size:1.15rem;background:var(--card);border:1px solid var(--line);padding:.5rem .8rem}
+.btn.small{background:transparent;color:var(--fg);border-color:var(--fg);padding:.5rem .9rem;min-height:44px}
+footer{background:var(--wall-deep);color:#B8D2D6;padding-block:1.6rem;font-size:.92rem}
+.skip{position:absolute;left:-999px}
+.skip:focus{left:8px;top:8px;background:#fff;color:#000;padding:.5rem;z-index:20}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+@media (min-width:640px){.help{grid-template-columns:repeat(3,1fr)}.hero .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:1.5rem;align-items:end;max-width:900px}.scene{margin:0}section .wrap,footer .wrap,.demo .wrap{max-width:900px}}
+body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+
+<a class="skip" href="#kontakt">Перейти до контактів</a>
+<div class="demo"><div class="wrap"><b>Макет.</b> <span>Це демонстрація для навчального проєкту. Форма нікуди не надсилає дані, контакти у квадратних дужках треба замінити.</span></div></div>
+
+<header class="hero"><div class="wrap">
+  <div>
+    <div class="school">[Назва закладу освіти]</div>
+    <h1>Двері школи <em>відчинені.</em></h1>
+    <p class="lead">Допоможемо, щоб дитині було в них комфортно.</p>
+    <div class="btns">
+      <a class="btn" href="#kontakt">Написати соціальному педагогу</a>
+      <a class="btn ghost" href="#pytannya">Часті запитання</a>
+    </div>
+  </div>
+  <svg class="scene" viewBox="60 20 180 160" role="img" aria-label="Приоткрытая дверь, из которой на пол падает тёплый свет; у порога стоит детский рюкзак" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="floor" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0E3038" stop-opacity="0"/><stop offset=".3" stop-color="#0E3038" stop-opacity="1"/><stop offset=".7" stop-color="#0E3038" stop-opacity="1"/><stop offset="1" stop-color="#0E3038" stop-opacity="0"/></linearGradient>
+      <linearGradient id="room" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFF4D6"/><stop offset="1" stop-color="#FFD98A"/></linearGradient>
+      <linearGradient id="spill" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFE3A0" stop-opacity=".95"/><stop offset="1" stop-color="#FFE3A0" stop-opacity=".05"/></linearGradient>
+    </defs>
+    <polygon points="60,142 240,142 240,180 60,180" fill="url(#floor)"/>
+    <rect x="109" y="30" width="79" height="112" fill="#0B262D"/>
+    <rect x="116.5" y="34" width="64" height="108" fill="url(#room)"/>
+    <polygon points="180.5,38 180.5,142 158,134 158,46" fill="#1F5A66"/>
+    <polygon points="180.5,38 183,38 183,142 180.5,142" fill="#0B262D"/>
+    <polygon points="116.5,142 180.5,142 232,180 66,180" fill="url(#spill)"/>
+    <ellipse cx="149.5" cy="163.5" rx="12" ry="2.4" fill="#0B262D" opacity=".45"/>
+    <path d="M142.5 163.5 V152 a7 7 0 0 1 14 0 V163.5 Z" fill="#F2B84B"/>
+    <path d="M142.5 152.5 a7 7 0 0 1 14 0 Z" fill="#E3A33A"/>
+    <rect x="144.5" y="156.5" width="10" height="5.5" rx="1.2" fill="#D9982B"/>
+    <rect x="148" y="152" width="3" height="3.2" rx=".6" fill="#8A5E12"/>
+    <rect x="140.2" y="155" width="2.4" height="8" rx="1" fill="#D9982B"/>
+    <rect x="156.4" y="155" width="2.4" height="8" rx="1" fill="#D9982B"/>
+    <path d="M147.5 145.2 a2 2 0 0 1 4 0" fill="none" stroke="#D9982B" stroke-width="1" stroke-linecap="round"/>
+  </svg>
+</div></header>
+
+<main>
+<section><div class="wrap">
+  <h2>З чим допомагаємо</h2>
+  <div class="help">
+    <article><h3><span class="dot"></span>Документи</h3><p>Розберемося з висновком ІРЦ та індивідуальною програмою розвитку (ІПР): що це і з чого почати.</p></article>
+    <article><h3><span class="dot"></span>Розмова зі школою</h3><p>Поговоримо з учителями й адміністрацією разом із вами, щоб вас почули.</p></article>
+    <article><h3><span class="dot"></span>Клас</h3><p>Підготуємо клас і вчителів до спільної роботи, щоб дитина відчувала себе своєю.</p></article>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <h2>Як проходить розмова</h2>
+  <ol class="steps">
+    <li><div><b>Ви пишете або телефонуєте</b>Достатньо одного речення. Діагноз вказувати не потрібно.</div></li>
+    <li><div><b>Домовляємося про час</b>У школі, у відеодзвінку або в Viber, як вам зручніше.</div></li>
+    <li><div><b>Говоримо без поспіху</b>Слухаємо, відповідаємо на запитання й разом визначаємо наступний крок.</div></li>
+  </ol>
+</div></section>
+
+<section id="pytannya" style="padding-top:0"><div class="wrap">
+  <h2>Часті запитання</h2>
+  <details><summary>Чи потрібен висновок ІРЦ, щоб звернутися?</summary><p>Ні. Можна прийти до того, як у вас є будь-які документи. Ми пояснимо, що таке ІРЦ і куди звертатися.</p></details>
+  <details><summary>Розмова конфіденційна?</summary><p>Так. Інформацію про вас і вашу дитину ми не обговорюємо з іншими без вашої згоди.</p></details>
+  <details><summary>Чи можна поговорити онлайн?</summary><p>Так, відеодзвінком або у Viber. У формі нижче можна обрати зручний формат.</p></details>
+  <details><summary>Ви розповісте класу про мою дитину?</summary><p>Ні. Підготовка класу не передбачає розповідей про конкретну дитину. Деталі ми узгоджуємо з вами.</p></details>
+  <p class="note">Відповіді в цьому макеті є прикладом формулювань. Реальний текст має підтвердити школа.</p>
+</div></section>
+
+<section id="kontakt" style="padding-top:0"><div class="wrap">
+  <h2>Напишіть нам</h2>
+  <div class="formcard">
+    <form id="f" novalidate>
+      <fieldset>
+        <legend>Як вам зручніше поговорити?</legend>
+        <div class="chips" id="fmt">
+          <input type="radio" name="fmt" id="fmt1" value="У школі" checked><label for="fmt1">У школі</label>
+          <input type="radio" name="fmt" id="fmt2" value="Відеодзвінок"><label for="fmt2">Відеодзвінок</label>
+          <input type="radio" name="fmt" id="fmt3" value="Viber"><label for="fmt3">Viber</label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>Приблизний час (приклад)</legend>
+        <div class="chips" id="slots">
+          <input type="radio" name="slot" id="s1" value="Пн 14:00"><label for="s1">Пн 14:00</label>
+          <input type="radio" name="slot" id="s2" value="Ср 16:30"><label for="s2">Ср 16:30</label>
+          <input type="radio" name="slot" id="s3" value="Чт 10:00"><label for="s3">Чт 10:00</label>
+          <input type="radio" name="slot" id="s4" value="Пт 15:00"><label for="s4">Пт 15:00</label>
+        </div>
+        <p class="hint">Це приклад. У реальній версії тут будуть вільні години соціального педагога.</p>
+      </fieldset>
+      <div style="margin-bottom:1.1rem"><label class="l" for="name">Ваше ім’я</label>
+        <input type="text" id="name" autocomplete="given-name" aria-describedby="name-e"><p class="err" id="name-e" hidden>Напишіть, як до вас звертатися.</p></div>
+      <div style="margin-bottom:1.1rem"><label class="l" for="contact">Телефон або Viber</label>
+        <input type="text" id="contact" inputmode="tel" autocomplete="tel" aria-describedby="contact-e"><p class="err" id="contact-e" hidden>Залиште номер, на який зручно відповісти.</p></div>
+      <div style="margin-bottom:1.1rem"><label class="l" for="q">Про що хочете поговорити (необов’язково)</label>
+        <textarea id="q"></textarea><p class="hint">Діагноз і медичні подробиці писати не потрібно.</p></div>
+      <div class="consent"><input type="checkbox" id="ok" aria-describedby="ok-e"><label for="ok">Погоджуюся, що соціальний педагог використає ці контакти лише для відповіді мені.</label></div>
+      <p class="err" id="ok-e" hidden>Потрібна ваша згода, щоб ми могли відповісти.</p>
+      <button class="btn" type="submit">Надіслати</button>
+    </form>
+    <div class="done" id="done" hidden role="status" aria-live="polite" tabindex="-1">
+      <h3>Дякуємо, <span id="dn"></span>.</h3>
+      <p id="dt"></p>
+      <p class="note">Це макет: повідомлення нікуди не надіслано. У реальній версії тут була б відповідь від соціального педагога протягом робочого дня.</p>
+      <button class="btn small" type="button" id="again">Заповнити ще раз</button>
+    </div>
+  </div>
+  <div class="direct">
+    <span>Або напряму:</span>
+    <span class="num" id="num">+380 __ ___ __ __</span>
+    <button class="btn small" type="button" id="copy">Скопіювати номер</button>
+    <span id="copied" class="hint" hidden>Скопійовано</span>
+  </div>
+  <p class="note">Кабінет № __ · Пн–Пт __:__–__:__ · Соціальний педагог [ПІБ]</p>
+</div></section>
+</main>
+
+<footer><div class="wrap">Макет проєкту реклами соціально-педагогічної роботи. Без фото дітей, без медичних даних, без обіцянок результату.<br><a href="poster.pdf">Плакат А3 (PDF)</a></div></footer>
+
+<script>
+(function(){
+  var f=document.getElementById('f'), done=document.getElementById('done');
+  function show(id,on){document.getElementById(id).hidden=!on}
+  f.addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=document.getElementById('name').value.trim(), contact=document.getElementById('contact').value.trim();
+    var ok=document.getElementById('ok').checked;
+    show('name-e',!name); show('contact-e',!contact); show('ok-e',!ok);
+    if(!name||!contact||!ok){ (!name?document.getElementById('name'):!contact?document.getElementById('contact'):document.getElementById('ok')).focus(); return; }
+    var fmt=(f.querySelector('input[name=fmt]:checked')||{}).value||'';
+    var slot=(f.querySelector('input[name=slot]:checked')||{}).value;
+    document.getElementById('dn').textContent=name;
+    document.getElementById('dt').textContent='Ми зв’яжемося з вами'+(slot?' орієнтовно в '+slot:'')+', формат: '+fmt.toLowerCase()+'. Контакт для відповіді: '+contact+'.';
+    f.hidden=true; done.hidden=false; done.focus();
+  });
+  document.getElementById('again').addEventListener('click',function(){
+    f.reset(); done.hidden=true; f.hidden=false; document.getElementById('name').focus();
+  });
+  var copy=document.getElementById('copy');
+  copy.addEventListener('click',function(){
+    var t=document.getElementById('num').textContent;
+    function ok(){show('copied',true); setTimeout(function(){show('copied',false)},1800)}
+    try{ navigator.clipboard.writeText(t).then(ok,function(){sel()}) }catch(x){ sel() }
+    function sel(){ var r=document.createRange(); r.selectNodeContents(document.getElementById('num')); var s=window.getSelection(); s.removeAllRanges(); s.addRange(r); }
+  });
+})();
+</script>
+
+</body>
+</html>
